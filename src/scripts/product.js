@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
       root.innerHTML = notFoundHTML();
       return;
     }
-    const gallery = await getProductGallery(product.id);
-    renderProduct(product, gallery.length ? gallery : [firstProductImage(product.id)]);
+    const gallery = await getProductGallery(product.code);
+    renderProduct(product, gallery.length ? gallery : [firstProductImage(product.code)]);
   }).catch(err => {
     console.error('Ürün yüklenemedi:', err);
     root.innerHTML = '<p style="text-align:center; padding:80px 6vw; color:var(--ink-dim);">Ürün şu anda yüklenemiyor.</p>';

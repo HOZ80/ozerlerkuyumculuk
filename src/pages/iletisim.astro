@@ -1,0 +1,69 @@
+---
+import StoreLayout from '../layouts/StoreLayout.astro';
+---
+<StoreLayout
+  title="İletişim — Özerler Kuyumculuk"
+  description="Özerler Kuyumculuk ile iletişime geçin — adres, telefon ve iletişim formu."
+>
+  <div class="topbar">
+    <a href="/home">Ana Sayfa</a><span class="sep">/</span><span class="current">İletişim</span>
+  </div>
+
+  <section class="about-hero">
+    <div class="eyebrow">Bize Ulaşın</div>
+    <h1 class="page-title">İletişim</h1>
+    <p class="page-lede">Sorularınız için bize aşağıdaki bilgilerden ya da formdan ulaşabilirsiniz.</p>
+  </section>
+
+  <section class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-row">
+        <span class="contact-label">Adres</span>
+        <span class="contact-value">Adres bilgisi eklenecek</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Telefon</span>
+        <span class="contact-value">Telefon bilgisi eklenecek</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">WhatsApp</span>
+        <span class="contact-value">WhatsApp bilgisi eklenecek</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">E-posta</span>
+        <span class="contact-value">E-posta bilgisi eklenecek</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Çalışma Saatleri</span>
+        <span class="contact-value">Çalışma saatleri eklenecek</span>
+      </div>
+
+      <div class="map-placeholder">Harita buraya eklenecek</div>
+    </div>
+
+    <form name="iletisim" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+      <input type="hidden" name="form-name" value="iletisim" />
+      <p class="hidden-field"><label>Bu alanı boş bırakın: <input name="bot-field" /></label></p>
+
+      <label>
+        Ad Soyad
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        E-posta
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Telefon
+        <input type="tel" name="phone" />
+      </label>
+      <label>
+        Mesaj
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <button type="submit" class="pill">Gönder</button>
+    </form>
+  </section>
+
+  <p class="editor-note">Not: Adres/telefon/harita bilgileri geldiğinde yerine konacak. Form Netlify üzerinden çalışıyor — gönderilen mesajlar Netlify panelinde görünür, e-posta bildirimi ayrıca açılabilir.</p>
+</StoreLayout>

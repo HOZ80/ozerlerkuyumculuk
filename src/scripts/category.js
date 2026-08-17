@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function cardHTML(p) {
-    const img = firstProductImage(p.id);
+    const img = firstProductImage(p.code);
     const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
     const outOfStock = !p.inStock ? '<span class="card-badge" style="background:#26211C; color:#fff; left:auto; right:12px;">Stokta Yok</span>' : '';
     return `

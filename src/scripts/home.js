@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function cardHTML(p) {
-    const img = firstProductImage(p.id);
+    const img = firstProductImage(p.code);
     const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
     return `
       <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">

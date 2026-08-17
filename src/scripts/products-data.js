@@ -4,13 +4,15 @@
 // aynı sırada olmalı: id,name,category,subcategory,price,code,colors,sizes,
 // description,featured,inStock,badge,sortOrder,seoDescription
 
-const PRODUCTS_CSV_URL = "PASTE_YOUR_PUBLISHED_SHEET_CSV_URL_HERE";
+const PRODUCTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRC1WD4GGeqm7_fqazFK41ISRmgEA1xqlQp7z4gHAjBTokbt0dQcpYB_AdC3psIN3O7_xMrYqey9xzm/pub?output=csv";
 
 // Sheet henüz bağlanmadıysa yerel şablon dosyasına düşer (geliştirme/test için)
 const FALLBACK_CSV_URL = "/products-template.csv";
 
 // GÖRSEL KURALI: her ürünün fotoğrafları assets/img/products/ klasöründe
-// <slug>-1.jpg, <slug>-2.jpg, <slug>-3.jpg ... şeklinde, 1'den başlayıp
+// <code>_1.jpg, <code>_2.jpg, <code>_3.jpg ... şeklinde, ürünün Sheet'teki
+// `code` sütununa göre (örn. OZ-4471_1.jpg) — isme göre DEĞİL, çünkü aynı
+// isimde iki ürün olabilir ama kod her zaman benzersiz. 1'den başlayıp
 // boşluksuz numaralanır. Sabit bir üst sınır yok — kod, bir sonraki numarayı
 // bulamayana kadar aramaya devam eder. Kaç fotoğraf olursa olsun otomatik
 // çalışır, kod değişikliği gerekmez.
@@ -75,9 +77,10 @@ export function formatPrice(price) {
   return '₺ ' + n.toLocaleString('tr-TR');
 }
 
-// Kartlarda gösterilecek ilk görsel — her ürünün en az -1.jpg'i olmalı
-export function firstProductImage(slug) {
-  return `${PRODUCTS_IMG_FOLDER}${slug}-1.jpg`;
+// Kartlarda gösterilecek ilk görsel — her ürünün en az _1.jpg'i olmalı
+// (ürünün Sheet'teki code'una göre, isme göre değil)
+export function firstProductImage(code) {
+  return `${PRODUCTS_IMG_FOLDER}${code}_1.jpg`;
 }
 
 export function checkImageExists(src) {
@@ -90,11 +93,12 @@ export function checkImageExists(src) {
 }
 
 // Ürün detay sayfası için: 1'den başlayıp ilk eksik numarada duran galeri listesi
-export async function getProductGallery(slug) {
+// (ürünün code'una göre)
+export async function getProductGallery(code) {
   const images = [];
   let i = 1;
   while (i <= IMG_SAFETY_LIMIT) {
-    const src = `${PRODUCTS_IMG_FOLDER}${slug}-${i}.jpg`;
+    const src = `${PRODUCTS_IMG_FOLDER}${code}_${i}.jpg`;
     const exists = await checkImageExists(src);
     if (!exists) break;
     images.push(src);
