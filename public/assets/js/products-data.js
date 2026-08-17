@@ -7,14 +7,14 @@
 const PRODUCTS_CSV_URL = "PASTE_YOUR_PUBLISHED_SHEET_CSV_URL_HERE";
 
 // Sheet henüz bağlanmadıysa yerel şablon dosyasına düşer (geliştirme/test için)
-const FALLBACK_CSV_URL = "products-template.csv";
+const FALLBACK_CSV_URL = "/products-template.csv";
 
 // GÖRSEL KURALI: her ürünün fotoğrafları assets/img/products/ klasöründe
 // <slug>-1.jpg, <slug>-2.jpg, <slug>-3.jpg ... şeklinde, 1'den başlayıp
 // boşluksuz numaralanır. Sabit bir üst sınır yok — kod, bir sonraki numarayı
 // bulamayana kadar aramaya devam eder. Kaç fotoğraf olursa olsun otomatik
 // çalışır, kod değişikliği gerekmez.
-const PRODUCTS_IMG_FOLDER = "assets/img/products/";
+const PRODUCTS_IMG_FOLDER = "/assets/img/products/";
 const IMG_SAFETY_LIMIT = 30; // sonsuz döngüye karşı iç güvenlik sınırı, pratikte hiç dokunulmaz
 
 function parseColorField(raw) {

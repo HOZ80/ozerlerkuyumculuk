@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const img = firstProductImage(p.id);
     const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
     return `
-      <a class="card" href="product.html?slug=${encodeURIComponent(p.id)}">
+      <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">
         <div class="card-image">
           ${badge}
           <img src="${img}" alt="${p.name}" loading="lazy">

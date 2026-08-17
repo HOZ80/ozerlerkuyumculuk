@@ -26,14 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function notFoundHTML() {
     return `<div style="text-align:center; padding:80px 6vw;">
       <p style="color:var(--ink-dim); margin-bottom:20px;">Bu ürün bulunamadı.</p>
-      <a href="home.html" class="pill">Ana Sayfaya Dön</a>
+      <a href="/home" class="pill">Ana Sayfaya Dön</a>
     </div>`;
   }
 
   function renderProduct(p, images) {
     document.getElementById('pageTitle').textContent = `${p.name} — Özerler Kuyumculuk`;
     document.getElementById('pageDescription').setAttribute('content', p.seoDescription || p.name);
-    document.getElementById('breadcrumbCurrent').textContent = p.subcategory || p.category || p.name;
+
+    const catLink = document.getElementById('breadcrumbCategory');
+    catLink.textContent = p.category || 'Koleksiyon';
+    catLink.href = p.category ? `/category?cat=${encodeURIComponent(p.category)}` : '/home';
+    document.getElementById('breadcrumbCurrent').textContent = p.name;
 
     const thumbsHTML = images.map((img, i) => `
       <button class="thumb${i === 0 ? ' active' : ''}" data-img="${img}">

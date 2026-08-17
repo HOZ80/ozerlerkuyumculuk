@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
     const outOfStock = !p.inStock ? '<span class="card-badge" style="background:#26211C; color:#fff; left:auto; right:12px;">Stokta Yok</span>' : '';
     return `
-      <a class="card" href="product.html?slug=${encodeURIComponent(p.id)}">
+      <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">
         <div class="card-image">
           ${badge}${outOfStock}
           <img src="${img}" alt="${p.name}" loading="lazy">

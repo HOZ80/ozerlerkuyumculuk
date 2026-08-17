@@ -1,0 +1,19 @@
+---
+import StoreLayout from '../layouts/StoreLayout.astro';
+---
+<StoreLayout
+  title="Ürün — Özerler Kuyumculuk"
+  description="Özerler Kuyumculuk ürün detayı."
+>
+  <div class="topbar">
+    <a href="/home">Ana Sayfa</a><span class="sep">/</span><a href="/home" id="breadcrumbCategory">…</a><span class="sep">/</span><span class="current" id="breadcrumbCurrent">…</span>
+  </div>
+
+  <div id="pdpRoot">
+    <p style="text-align:center; padding:80px 6vw; color:var(--ink-dim);">Yükleniyor...</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" is:inline></script>
+  <script src="/assets/js/products-data.js" is:inline></script>
+  <script src="/assets/js/product.js" is:inline></script>
+</StoreLayout>
