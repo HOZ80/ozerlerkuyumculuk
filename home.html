@@ -70,39 +70,8 @@
     <div class="eyebrow">Koleksiyon</div>
     <h2>Öne Çıkan Parçalar</h2>
   </div>
-  <div class="grid">
-    <a class="card" href="product.html">
-      <div class="card-image"><img src="assets/img/product-ring.jpg" alt="Dalga Motifli Yüzük" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-cat">Altın · Yüzük</span>
-        <div class="card-name">Dalga Motifli Yüzük</div>
-        <div class="card-price">₺ 6.450</div>
-      </div>
-    </a>
-    <a class="card" href="#">
-      <div class="card-image"><img src="assets/img/product-necklace.jpg" alt="Katlı İnce Zincir Set" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-cat">Altın · Kolye</span>
-        <div class="card-name">Katlı İnce Zincir Set</div>
-        <div class="card-price">₺ 9.900</div>
-      </div>
-    </a>
-    <a class="card" href="#">
-      <div class="card-image"><img src="assets/img/product-pendant.jpg" alt="Damla Pırlanta Kolye Ucu" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-cat">Altın · Kolye Ucu</span>
-        <div class="card-name">Damla Pırlanta Kolye Ucu</div>
-        <div class="card-price">₺ 14.200</div>
-      </div>
-    </a>
-    <a class="card" href="#">
-      <div class="card-image"><img src="assets/img/product-bracelet.jpg" alt="Zirkon Taşlı İnce Bilezik" loading="lazy"></div>
-      <div class="card-body">
-        <span class="card-cat">Altın · Bilezik</span>
-        <div class="card-name">Zirkon Taşlı İnce Bilezik</div>
-        <div class="card-price">₺ 11.750</div>
-      </div>
-    </a>
+  <div class="grid" id="featured-grid">
+    <p style="color:var(--ink-dim); grid-column:1/-1; text-align:center;">Yükleniyor...</p>
   </div>
 </div>
 
@@ -155,5 +124,8 @@
   <div class="footer-bottom">© Özerler Kuyumculuk — Tüm hakları saklıdır.</div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="assets/js/products-data.js"></script>
+<script src="assets/js/home.js"></script>
 </body>
 </html>
