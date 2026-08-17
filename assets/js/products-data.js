@@ -5,7 +5,7 @@
 // image1,image2,image3,image4,colors,sizes,description,featured,inStock,
 // badge,sortOrder,seoDescription
 
-const PRODUCTS_CSV_URL = "PASTE_YOUR_PUBLISHED_SHEET_CSV_URL_HERE";
+const PRODUCTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRC1WD4GGeqm7_fqazFK41ISRmgEA1xqlQp7z4gHAjBTokbt0dQcpYB_AdC3psIN3O7_xMrYqey9xzm/pubhtml";
 
 // Sheet henüz bağlanmadıysa yerel şablon dosyasına düşer (geliştirme/test için)
 const FALLBACK_CSV_URL = "products-template.csv";
