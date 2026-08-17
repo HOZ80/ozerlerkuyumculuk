@@ -12,14 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  loadProducts().then(async products => {
+  loadProducts().then(products => {
     const product = products.find(p => p.id === slug);
     if (!product) {
       root.innerHTML = notFoundHTML();
       return;
     }
-    const gallery = await getProductGallery(product.code);
-    renderProduct(product, gallery.length ? gallery : [firstProductImage(product.code)]);
+    // Sayfayı HEMEN, ilk görselle çiziyoruz — galerinin geri kalanını
+    // arka planda sessizce tamamlıyoruz. Önceden tüm galeri bulunana kadar
+    // bekliyorduk, bu da (özellikle tek görselli ürünlerde bile) her seferinde
+    // "2. görsel var mı" diye başarısız bir istek bekletip sayfayı geciktiriyordu.
+    renderProduct(product, [firstProductImage(product.code)]);
+    getProductGallery(product.code).then(gallery => {
+      if (gallery.length > 1) updateGallery(gallery);
+    });
   }).catch(err => {
     console.error('Ürün yüklenemedi:', err);
     root.innerHTML = '<p style="text-align:center; padding:80px 6vw; color:var(--ink-dim);">Ürün şu anda yüklenemiyor.</p>';
@@ -41,11 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     catLink.href = p.category ? `/category?cat=${encodeURIComponent(p.category)}` : '/home';
     document.getElementById('breadcrumbCurrent').textContent = p.name;
 
-    const thumbsHTML = images.map((img, i) => `
-      <button class="thumb${i === 0 ? ' active' : ''}" data-img="${img}">
-        <img src="${img}" alt="${p.name} - görsel ${i + 1}">
-      </button>`).join('');
-
     const swatchesHTML = p.colors.length ? `
       <div class="opt-label">Renk — ${p.colors[0].name}</div>
       <div class="swatches">
@@ -62,9 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const stockHTML = !p.inStock ? `<p style="color:#C77F6E; font-size:13px; margin-bottom:18px;">Şu anda stokta yok</p>` : '';
 
+    // İlk render'da her zaman tek görsel var (galeri henüz gelmedi) — bu yüzden
+    // thumbnail şeridi yok, iki kolonlu düzen. Galeri gelince updateGallery()
+    // şeridi ekleyip düzeni otomatik dört kolona genişletiyor.
     root.innerHTML = `
-      <div class="pdp"${images.length <= 1 ? ' style="grid-template-columns:1fr 1fr;"' : ''}>
-        ${images.length > 1 ? `<div class="thumbs">${thumbsHTML}</div>` : ''}
+      <div class="pdp" style="grid-template-columns:1fr 1fr;">
         <div class="main-image">
           <img id="mainImage" src="${images[0]}" alt="${p.name}">
           <button class="wish" aria-label="Favorilere ekle">♡</button>
@@ -101,7 +104,27 @@ document.addEventListener('DOMContentLoaded', () => {
     wireInteractions();
   }
 
-  function wireInteractions() {
+  // Galerinin geri kalanı (2. görsel ve sonrası) arka planda bulununca
+  // thumbnail şeridini sayfaya sonradan ekler — kullanıcı bunu fark etmez,
+  // sayfa zaten görünür durumdadır.
+  function updateGallery(images) {
+    const pdp = root.querySelector('.pdp');
+    const mainImageBox = root.querySelector('.main-image');
+    if (!pdp || !mainImageBox || pdp.querySelector('.thumbs')) return;
+
+    pdp.style.gridTemplateColumns = '';
+    const thumbsHTML = images.map((img, i) => `
+      <button class="thumb${i === 0 ? ' active' : ''}" data-img="${img}">
+        <img src="${img}" alt="Ürün görseli ${i + 1}">
+      </button>`).join('');
+    const thumbsEl = document.createElement('div');
+    thumbsEl.className = 'thumbs';
+    thumbsEl.innerHTML = thumbsHTML;
+    pdp.insertBefore(thumbsEl, mainImageBox);
+    wireThumbs();
+  }
+
+  function wireThumbs() {
     const mainImage = document.getElementById('mainImage');
     document.querySelectorAll('.thumb').forEach(thumb => {
       thumb.addEventListener('click', () => {
@@ -110,6 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mainImage) mainImage.src = thumb.dataset.img;
       });
     });
+  }
+
+  function wireInteractions() {
+    wireThumbs();
 
     document.querySelectorAll('.swatch').forEach(sw => {
       sw.addEventListener('click', () => {
