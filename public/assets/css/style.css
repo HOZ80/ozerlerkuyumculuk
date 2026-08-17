@@ -38,8 +38,8 @@ img{ max-width:100%; display:block; }
 /* ============ NAV ============ */
 .nav{ display:flex; align-items:center; justify-content:space-between; padding:22px 5vw; background:var(--bg); position:relative; z-index:20; }
 .nav-links{ display:flex; gap:34px; list-style:none; }
-.nav-links a{ text-decoration:none; font-size:13px; letter-spacing:0.03em; color:var(--ink-dim); transition:color .25s ease; }
-.nav-links a:hover{ color:var(--gold-deep); }
+.nav-links a{ text-decoration:none; font-size:13px; letter-spacing:0.03em; color:var(--ink-dim); transition:color .25s ease, transform .25s ease; display:inline-block; }
+.nav-links a:hover{ color:var(--gold-deep); transform:translateY(-3px); }
 .nav-links li{ position:relative; }
 .nav-links .has-sub:hover .submenu, .nav-links .has-sub:focus-within .submenu{ opacity:1; visibility:visible; transform:translateY(0); }
 .submenu{ position:absolute; top:26px; left:-14px; background:#fff; border:1px solid rgba(38,33,28,0.08); border-radius:14px; padding:10px 0; min-width:170px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:all .25s ease; box-shadow:0 20px 40px rgba(38,33,28,0.1); list-style:none; }
