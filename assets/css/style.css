@@ -114,6 +114,60 @@ footer{ background:var(--ink); color:#EDE7DC; padding:60px 6vw 34px; }
 .footer-col a:hover{ color:var(--gold-bright); }
 .footer-bottom{ max-width:1180px; margin:40px auto 0; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); font-size:11.5px; color:#8f897d; text-align:center; }
 
+/* ============ ÜRÜN DETAY SAYFASI (PDP) ============ */
+.topbar{ padding:20px 6vw 0; font-size:12.5px; color:#8c8272; max-width:1180px; margin:0 auto; }
+.topbar a{ color:#8c8272; text-decoration:none; }
+.topbar .sep{ margin:0 6px; opacity:0.5; }
+.topbar .current{ color:var(--ink); }
+
+.pdp{ display:grid; grid-template-columns:110px 1fr 1fr; gap:26px; padding:26px 6vw 100px; max-width:1180px; margin:0 auto; }
+.thumbs{ display:flex; flex-direction:column; gap:12px; }
+.thumb{ width:100%; aspect-ratio:1/1; border-radius:14px; overflow:hidden; border:1.5px solid transparent; cursor:pointer; transition:border-color .25s ease; background:var(--blush); padding:0; }
+.thumb.active{ border-color:var(--gold); }
+.thumb img{ width:100%; height:100%; object-fit:cover; }
+
+.main-image{ border-radius:var(--radius-lg); overflow:hidden; aspect-ratio:4/5; background:var(--blush); position:relative; }
+.main-image img{ width:100%; height:100%; object-fit:cover; }
+.wish{ position:absolute; top:18px; right:18px; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.85); display:flex; align-items:center; justify-content:center; font-size:16px; border:none; cursor:pointer; }
+
+.pdp-details{ padding-top:6px; }
+h1.p-name{ font-family:'Italiana',serif; font-weight:400; font-size:34px; color:var(--ink); margin-bottom:8px; }
+.p-code{ font-size:12.5px; color:#9C8F79; margin-bottom:16px; }
+.p-price{ font-size:24px; color:var(--gold-deep); font-weight:600; font-variant-numeric:tabular-nums; margin-bottom:26px; }
+
+.opt-label{ font-size:12.5px; color:var(--ink-dim); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.06em; }
+.swatches{ display:flex; gap:10px; margin-bottom:24px; }
+.swatch{ width:32px; height:32px; border-radius:50%; cursor:pointer; border:2px solid transparent; box-shadow:0 0 0 1px rgba(38,33,28,0.15); padding:0; }
+.swatch.active{ border-color:var(--ink); }
+
+.sizes{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
+.size-box{ min-width:42px; height:42px; padding:0 6px; border-radius:10px; border:1px solid rgba(38,33,28,0.18); background:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; cursor:pointer; transition:all .2s ease; font-family:'Urbanist',sans-serif; }
+.size-box.active{ border-color:var(--gold); background:#FDF1DC; color:var(--gold-deep); font-weight:600; }
+
+.qty-row{ display:flex; align-items:center; gap:16px; margin-bottom:30px; }
+.qty{ display:flex; align-items:center; border:1px solid rgba(38,33,28,0.18); border-radius:var(--radius-pill); overflow:hidden; }
+.qty button{ width:38px; height:38px; border:none; background:transparent; font-size:16px; cursor:pointer; }
+.qty span{ width:34px; text-align:center; font-size:14px; }
+
+.buy-row{ display:flex; gap:14px; margin-bottom:34px; }
+.pdp-pill{ font-size:14px; font-weight:500; letter-spacing:0.02em; padding:15px 0; border-radius:var(--radius-pill); flex:1; text-align:center; cursor:pointer; transition:all .3s ease; font-family:'Urbanist',sans-serif; border:1.5px solid var(--ink); }
+.pdp-pill.outline{ background:transparent; color:var(--ink); }
+.pdp-pill.outline:hover{ background:var(--ink); color:#fff; }
+.pdp-pill.solid{ background:var(--ink); color:#fff; }
+.pdp-pill.solid:hover{ background:#3a3527; }
+
+.accordion{ border-top:1px solid rgba(38,33,28,0.12); }
+.acc-row{ display:flex; justify-content:space-between; align-items:center; padding:16px 2px; border-bottom:1px solid rgba(38,33,28,0.12); font-size:13.5px; cursor:pointer; }
+.acc-row .plus{ color:var(--gold-deep); }
+.acc-panel{ display:none; padding:0 2px 16px; font-size:13px; color:var(--ink-dim); line-height:1.7; }
+.acc-row.open + .acc-panel{ display:block; }
+
+@media (max-width:880px){
+  .pdp{ grid-template-columns:1fr; }
+  .thumbs{ flex-direction:row; order:2; }
+  .thumb{ width:70px; aspect-ratio:1/1; }
+}
+
 /* ============ ENTRY / LANDING PAGE (separate, dramatic) ============ */
 .landing{ position:relative; height:100vh; height:100svh; overflow:hidden; background:#0B0A08; }
 .landing-photo{
