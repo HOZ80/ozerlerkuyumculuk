@@ -19,7 +19,7 @@ import StoreLayout from '../layouts/StoreLayout.astro';
     <div class="contact-info">
       <div class="contact-row">
         <span class="contact-label">Adres</span>
-        <span class="contact-value">Adres bilgisi eklenecek</span>
+        <span class="contact-value">Birlik, Atışalanı Cd. No:153 A, 34230 Esenler/İstanbul</span>
       </div>
       <div class="contact-row">
         <span class="contact-label">Telefon</span>
@@ -38,7 +38,13 @@ import StoreLayout from '../layouts/StoreLayout.astro';
         <span class="contact-value">Çalışma saatleri eklenecek</span>
       </div>
 
-      <div class="map-placeholder">Harita buraya eklenecek</div>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps?q=Birlik%2C%20At%C4%B1%C5%9Falan%C4%B1%20Cd.%20No%3A153%20A%2C%2034230%20Esenler%2F%C4%B0stanbul%20%C3%96zerler%20Kuyumculuk&output=embed"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Özerler Kuyumculuk Konum"
+        ></iframe>
+      </div>
     </div>
 
     <form name="iletisim" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
