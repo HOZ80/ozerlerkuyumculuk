@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="pageTitle">Ürün — Özerler Kuyumculuk</title>
-<meta name="description" id="pageDescription" content="Özerler Kuyumculuk ürün detayı.">
+<title id="pageTitle">Koleksiyon — Özerler Kuyumculuk</title>
+<meta name="description" id="pageDescription" content="Özerler Kuyumculuk koleksiyonu.">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -43,11 +43,17 @@
 </nav>
 
 <div class="topbar">
-  <a href="home.html">Ana Sayfa</a><span class="sep">/</span><a href="home.html#koleksiyon">Ürünler</a><span class="sep">/</span><span class="current" id="breadcrumbCurrent">…</span>
+  <a href="home.html">Ana Sayfa</a><span class="sep">/</span><span class="current" id="breadcrumbCurrent">…</span>
 </div>
 
-<div id="pdpRoot">
-  <p style="text-align:center; padding:80px 6vw; color:var(--ink-dim);">Yükleniyor...</p>
+<div class="section">
+  <div class="sec-head">
+    <div class="eyebrow">Koleksiyon</div>
+    <h2 id="categoryTitle">…</h2>
+  </div>
+  <div class="grid" id="category-grid">
+    <p style="color:var(--ink-dim); grid-column:1/-1; text-align:center;">Yükleniyor...</p>
+  </div>
 </div>
 
 <footer>
@@ -60,9 +66,9 @@
     </div>
     <div class="footer-col">
       <h4>Koleksiyonlar</h4>
-      <a href="#">Altın</a>
-      <a href="#">Gümüş</a>
-      <a href="#">Saat</a>
+      <a href="category.html?cat=Alt%C4%B1n">Altın</a>
+      <a href="category.html?cat=G%C3%BCm%C3%BC%C5%9F">Gümüş</a>
+      <a href="category.html?cat=Saat">Saat</a>
     </div>
     <div class="footer-col">
       <h4>Bilgi</h4>
@@ -76,6 +82,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="assets/js/products-data.js"></script>
-<script src="assets/js/product.js"></script>
+<script src="assets/js/category.js"></script>
 </body>
 </html>

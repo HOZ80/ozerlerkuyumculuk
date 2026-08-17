@@ -10,13 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  loadProducts().then(products => {
+  loadProducts().then(async products => {
     const product = products.find(p => p.id === slug);
     if (!product) {
       root.innerHTML = notFoundHTML();
       return;
     }
-    renderProduct(product);
+    const gallery = await getProductGallery(product.id);
+    renderProduct(product, gallery.length ? gallery : [firstProductImage(product.id)]);
   }).catch(err => {
     console.error('Ürün yüklenemedi:', err);
     root.innerHTML = '<p style="text-align:center; padding:80px 6vw; color:var(--ink-dim);">Ürün şu anda yüklenemiyor.</p>';
@@ -29,12 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>`;
   }
 
-  function renderProduct(p) {
+  function renderProduct(p, images) {
     document.getElementById('pageTitle').textContent = `${p.name} — Özerler Kuyumculuk`;
     document.getElementById('pageDescription').setAttribute('content', p.seoDescription || p.name);
     document.getElementById('breadcrumbCurrent').textContent = p.subcategory || p.category || p.name;
-
-    const images = p.images.length ? p.images : ['assets/img/favicon.svg'];
 
     const thumbsHTML = images.map((img, i) => `
       <button class="thumb${i === 0 ? ' active' : ''}" data-img="${img}">
@@ -58,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const stockHTML = !p.inStock ? `<p style="color:#C77F6E; font-size:13px; margin-bottom:18px;">Şu anda stokta yok</p>` : '';
 
     root.innerHTML = `
-      <div class="pdp">
-        <div class="thumbs">${thumbsHTML}</div>
+      <div class="pdp"${images.length <= 1 ? ' style="grid-template-columns:1fr 1fr;"' : ''}>
+        ${images.length > 1 ? `<div class="thumbs">${thumbsHTML}</div>` : ''}
         <div class="main-image">
           <img id="mainImage" src="${images[0]}" alt="${p.name}">
           <button class="wish" aria-label="Favorilere ekle">♡</button>
