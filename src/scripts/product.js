@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // thumbnail şeridi yok, iki kolonlu düzen. Galeri gelince updateGallery()
     // şeridi ekleyip düzeni otomatik dört kolona genişletiyor.
     root.innerHTML = `
-      <div class="pdp" style="grid-template-columns:1fr 1fr;">
+      <div class="pdp">
         <div class="main-image">
           <img id="mainImage" src="${images[0]}" alt="${p.name}">
           <button class="wish" aria-label="Favorilere ekle">♡</button>
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainImageBox = root.querySelector('.main-image');
     if (!pdp || !mainImageBox || pdp.querySelector('.thumbs')) return;
 
-    pdp.style.gridTemplateColumns = '';
+    pdp.classList.add('has-gallery');
     const thumbsHTML = images.map((img, i) => `
       <button class="thumb${i === 0 ? ' active' : ''}" data-img="${img}">
         <img src="${img}" alt="Ürün görseli ${i + 1}">
