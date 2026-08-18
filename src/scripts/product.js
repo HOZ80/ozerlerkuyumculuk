@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           ${stockHTML}
           <div class="buy-row">
-            <a href="#" id="waOrderBtn" rel="noopener" class="pdp-pill solid" style="${!p.inStock ? 'opacity:0.4; pointer-events:none;' : ''} display:flex; align-items:center; justify-content:center; text-decoration:none;">WhatsApp'tan Sipariş Ver</a>
+            <a href="#" id="waOrderBtn" rel="noopener" class="pdp-pill solid" style="${!p.inStock ? 'opacity:0.4; pointer-events:none;' : ''} display:flex; align-items:center; justify-content:center; text-decoration:none;">WhatsApp'tan Bilgi Al / Sipariş Ver</a>
           </div>
           <div class="accordion">
             <div class="acc-row"><span>Kargo Bilgisi</span><span class="plus">+</span></div>
