@@ -93,7 +93,6 @@ h1.headline{ font-family:'Playfair Display',serif; font-weight:560; font-size:cl
 .card-cat{ font-family:'Cinzel',serif; font-size:9.5px; letter-spacing:0.2em; color:#B5A896; text-transform:uppercase; margin-bottom:8px; display:block; }
 .card-name{ font-size:14.5px; font-weight:500; margin-bottom:6px; color:var(--ink); }
 .card-price{ font-size:14px; color:var(--gold-deep); font-weight:600; font-variant-numeric:tabular-nums; }
-.card-wa-link{ display:block; margin:10px 20px 4px; font-size:12px; }
 
 @media (max-width:980px){ .grid{ grid-template-columns:repeat(2,1fr); } }
 @media (max-width:560px){ .grid{ grid-template-columns:1fr; } }
