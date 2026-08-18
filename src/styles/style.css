@@ -74,7 +74,10 @@ h1.headline{ font-family:'Playfair Display',serif; font-weight:560; font-size:cl
 
 @media (max-width:880px){
   .hero{ min-height:74vh; }
-  .hero-photo{ background-image: linear-gradient(180deg, rgba(253,243,238,0.35) 0%, rgba(253,243,238,0.95) 78%), url('/assets/img/hero-mobile.jpg'); background-position:50% 30%; }
+  .hero-photo{ background-image: linear-gradient(180deg, rgba(11,10,8,0.55) 0%, rgba(11,10,8,0.68) 50%, rgba(11,10,8,0.82) 100%), url('/assets/img/hero-mobile.jpg'); background-position:50% 30%; }
+  .hero-copy .eyebrow{ color:#F2B24A; }
+  .hero-copy h1.headline{ color:#F8F4EA; }
+  .hero-copy .subhead{ color:#E6DFD2; }
 }
 
 /* ============ SECTION / CARDS ============ */
