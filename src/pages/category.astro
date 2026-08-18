@@ -6,12 +6,12 @@ import StoreLayout from '../layouts/StoreLayout.astro';
   description="Özerler Kuyumculuk koleksiyonu."
 >
   <div class="topbar">
-    <a href="/home">Ana Sayfa</a><span class="sep">/</span><span class="current" id="breadcrumbCurrent">…</span>
+    <a href="/home">Ana Sayfa</a><span class="sep">/</span><span id="breadcrumbCatWrap"></span><span class="current" id="breadcrumbCurrent">…</span>
   </div>
 
   <div class="section">
     <div class="sec-head">
-      <div class="eyebrow">Koleksiyon</div>
+      <div class="eyebrow" id="categoryEyebrow">Koleksiyon</div>
       <h2 id="categoryTitle">…</h2>
     </div>
     <div class="grid" id="category-grid">
