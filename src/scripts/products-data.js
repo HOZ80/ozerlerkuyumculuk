@@ -19,6 +19,20 @@ const FALLBACK_CSV_URL = "/products-template.csv";
 const PRODUCTS_IMG_FOLDER = "/assets/img/products/";
 const IMG_SAFETY_LIMIT = 30; // sonsuz döngüye karşı iç güvenlik sınırı, pratikte hiç dokunulmaz
 
+// WhatsApp satış hattı — Aşama 0: gerçek sepet/ödeme yerine, ürün bilgisiyle
+// dolu hazır bir mesajla doğrudan WhatsApp'a yönlendiriyoruz. Numara değişirse
+// tek satır güncellenir, her yerde otomatik yansır.
+export const WHATSAPP_NUMBER = "905377905911";
+
+export function whatsappLink(product, extra) {
+  const lines = [
+    `Merhaba, "${product.name}" (Kod: ${product.code || "-"}) ürünü hakkında bilgi almak istiyorum.`
+  ];
+  if (extra) lines.push(extra);
+  const text = lines.join(" ");
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 function parseColorField(raw) {
   // "Sarı Altın|#E8B84B,Rose Altın|#E7C9B8" -> [{name, hex}, ...]
   if (!raw) return [];

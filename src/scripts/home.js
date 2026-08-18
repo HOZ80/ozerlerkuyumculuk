@@ -1,5 +1,5 @@
 // Ana sayfa — "Öne Çıkan Parçalar" ızgarasını Sheet verisinden oluşturur
-import { loadProducts, formatPrice, firstProductImage } from './products-data.js';
+import { loadProducts, formatPrice, firstProductImage, whatsappLink } from './products-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const grid = document.getElementById('featured-grid');
@@ -21,16 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const img = firstProductImage(p.code);
     const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
     return `
-      <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">
-        <div class="card-image">
-          ${badge}
-          <img src="${img}" alt="${p.name}" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-cat">${p.category} · ${p.subcategory}</span>
-          <div class="card-name">${p.name}</div>
-          <div class="card-price">${formatPrice(p.price)}</div>
-        </div>
-      </a>`;
+      <div class="card-wrap">
+        <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">
+          <div class="card-image">
+            ${badge}
+            <img src="${img}" alt="${p.name}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="card-cat">${p.category} · ${p.subcategory}</span>
+            <div class="card-name">${p.name}</div>
+            <div class="card-price">${formatPrice(p.price)}</div>
+          </div>
+        </a>
+        <a href="${whatsappLink(p)}" target="_blank" rel="noopener" class="ghost-link card-wa-link">WhatsApp'tan Sor →</a>
+      </div>`;
   }
 });

@@ -4,7 +4,7 @@
 //    ürünün fotoğrafıdır).
 // 2) ?cat= ile birlikte ?sub= verildiyse: o alt kategorideki ürünleri, önceki
 //    davranışla birebir aynı ürün listesi kartlarıyla gösterir.
-import { loadProducts, formatPrice, firstProductImage } from './products-data.js';
+import { loadProducts, formatPrice, firstProductImage, whatsappLink } from './products-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
@@ -93,16 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const badge = p.badge ? `<span class="card-badge">${p.badge}</span>` : '';
     const outOfStock = !p.inStock ? '<span class="card-badge" style="background:#26211C; color:#fff; left:auto; right:12px;">Stokta Yok</span>' : '';
     return `
-      <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">
-        <div class="card-image">
-          ${badge}${outOfStock}
-          <img src="${img}" alt="${p.name}" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-cat">${p.category} · ${p.subcategory}</span>
-          <div class="card-name">${p.name}</div>
-          <div class="card-price">${formatPrice(p.price)}</div>
-        </div>
-      </a>`;
+      <div class="card-wrap">
+        <a class="card" href="/product?slug=${encodeURIComponent(p.id)}">
+          <div class="card-image">
+            ${badge}${outOfStock}
+            <img src="${img}" alt="${p.name}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <span class="card-cat">${p.category} · ${p.subcategory}</span>
+            <div class="card-name">${p.name}</div>
+            <div class="card-price">${formatPrice(p.price)}</div>
+          </div>
+        </a>
+        <a href="${whatsappLink(p)}" target="_blank" rel="noopener" class="ghost-link card-wa-link">WhatsApp'tan Sor →</a>
+      </div>`;
   }
 });

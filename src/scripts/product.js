@@ -1,6 +1,6 @@
 // Ürün detay sayfası — URL'deki ?slug= parametresine göre Sheet'ten ürünü
 // bulur ve tüm sayfayı (görsel, fiyat, renk, ölçü, açıklama) buna göre kurar.
-import { loadProducts, formatPrice, firstProductImage, getProductGallery } from './products-data.js';
+import { loadProducts, formatPrice, firstProductImage, getProductGallery, whatsappLink } from './products-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
@@ -85,8 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           ${stockHTML}
           <div class="buy-row">
-            <button class="pdp-pill outline" ${!p.inStock ? 'disabled' : ''}>Sepete Ekle</button>
-            <button class="pdp-pill solid" ${!p.inStock ? 'disabled' : ''}>Hemen Al</button>
+            <a href="#" id="waOrderBtn" rel="noopener" class="pdp-pill solid" style="${!p.inStock ? 'opacity:0.4; pointer-events:none;' : ''} display:flex; align-items:center; justify-content:center; text-decoration:none;">WhatsApp'tan Sipariş Ver</a>
           </div>
           <div class="accordion">
             <div class="acc-row"><span>Kargo Bilgisi</span><span class="plus">+</span></div>
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>`;
 
-    wireInteractions();
+    wireInteractions(p);
   }
 
   // Galerinin geri kalanı (2. görsel ve sonrası) arka planda bulununca
@@ -135,8 +134,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function wireInteractions() {
+  function wireInteractions(p) {
     wireThumbs();
+
+    const waBtn = document.getElementById('waOrderBtn');
+    if (waBtn) {
+      waBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const qty = document.getElementById('qtyValue')?.textContent || '1';
+        const activeColor = document.querySelector('.swatch.active')?.dataset.name;
+        const activeSize = document.querySelector('.size-box.active')?.textContent;
+        const parts = [`Adet: ${qty}`];
+        if (activeColor) parts.push(`Renk: ${activeColor}`);
+        if (activeSize) parts.push(`Ölçü: ${activeSize}`);
+        window.open(whatsappLink(p, parts.join(', ')), '_blank', 'noopener');
+      });
+    }
 
     document.querySelectorAll('.swatch').forEach(sw => {
       sw.addEventListener('click', () => {
