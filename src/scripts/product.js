@@ -45,6 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const catLink = document.getElementById('breadcrumbCategory');
     catLink.textContent = p.category || 'Koleksiyon';
     catLink.href = p.category ? `/category?cat=${encodeURIComponent(p.category)}` : '/home';
+
+    const subLink = document.getElementById('breadcrumbSubcategory');
+    const subSep = document.getElementById('breadcrumbSubSep');
+    if (p.subcategory) {
+      subLink.textContent = p.subcategory;
+      subLink.href = `/category?cat=${encodeURIComponent(p.category)}&sub=${encodeURIComponent(p.subcategory)}`;
+      subLink.style.display = '';
+      subSep.style.display = '';
+    } else {
+      subLink.style.display = 'none';
+      subSep.style.display = 'none';
+    }
+
     document.getElementById('breadcrumbCurrent').textContent = p.name;
 
     const swatchesHTML = p.colors.length ? `
