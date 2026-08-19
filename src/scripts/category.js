@@ -63,8 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.innerHTML = '<p style="color:var(--ink-dim); grid-column:1/-1; text-align:center;">Ürünler şu anda yüklenemiyor.</p>';
   });
 
-  // Alt kategori kartları: her alt kategori için, o alt kategorideki en düşük
-  // sortOrder'lı (Sheet'te en öne konmuş) ürünün ilk fotoğrafı temsilci görsel olur.
+  // Alt kategori adını dosya adına çevirir (Türkçe karakterleri sadeleştirir).
+  // "Kolye Ucu" -> "kolye-ucu", "Yüzük" -> "yuzuk"
+  function slugifyTr(str) {
+    const map = { 'ç':'c','Ç':'c','ğ':'g','Ğ':'g','ı':'i','İ':'i','ö':'o','Ö':'o','ş':'s','Ş':'s','ü':'u','Ü':'u' };
+    return str
+      .split('').map(ch => map[ch] || ch).join('')
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Alt kategori kartları: önce public/assets/img/subcategories/<slug>.jpg diye
+  // SABİT bir görsel var mı diye bakılır (varsa o kullanılır, ürün sıralamasından
+  // etkilenmez). Yoksa (dosya bulunamazsa), eski davranışa otomatik döner: o alt
+  // kategorideki en düşük sortOrder'lı ürünün fotoğrafı temsilci görsel olur.
   function subcategoryCardsHTML(catProducts, cat) {
     const bySub = new Map();
     catProducts.forEach(p => {
@@ -79,10 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     return Array.from(bySub.entries()).map(([subName, repProduct]) => {
-      const img = firstProductImage(repProduct.code);
+      const fixedImg = `/assets/img/subcategories/${slugifyTr(subName)}.jpg`;
+      const fallbackImg = firstProductImage(repProduct.code);
       return `
         <a class="subcat-box" href="/category?cat=${encodeURIComponent(cat)}&sub=${encodeURIComponent(subName)}">
-          <img src="${img}" alt="${subName}" loading="lazy">
+          <img src="${fixedImg}" data-fallback="${fallbackImg}" onerror="this.onerror=null;this.src=this.dataset.fallback;" alt="${subName}" loading="lazy">
           <div class="subcat-label"><div class="subcat-eyebrow">Koleksiyon</div><h3>${subName}</h3></div>
         </a>`;
     }).join('');
