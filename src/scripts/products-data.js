@@ -4,7 +4,10 @@
 // aynı sırada olmalı: id,name,category,subcategory,price,code,colors,sizes,
 // description,featured,inStock,badge,sortOrder,seoDescription
 
-const PRODUCTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRC1WD4GGeqm7_fqazFK41ISRmgEA1xqlQp7z4gHAjBTokbt0dQcpYB_AdC3psIN3O7_xMrYqey9xzm/pub?output=csv";
+// ⚠️ BU SATIR TEST LİNKİDİR — test-revision branch'ine özel.
+// main'e merge etmeden ÖNCE bu linki yukarıdaki gerçek/canlı Sheet linkiyle
+// DEĞİŞTİR, yoksa canlı site test verisini göstermeye başlar.
+const PRODUCTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1wylTE_WkZ5p3Ch5FhiBKg2dFvuYBnB6Jk5JoyG00MmzyEXDopE8r6Vd81XFe0W8bTYETXFCu6REx/pub?output=csv";
 
 // Sheet henüz bağlanmadıysa yerel şablon dosyasına düşer (geliştirme/test için)
 const FALLBACK_CSV_URL = "/products-template.csv";
